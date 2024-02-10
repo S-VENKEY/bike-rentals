@@ -1,0 +1,40 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract BikeRental {
+    address public owner;
+    uint256 public rentedBikes;
+    mapping(address => uint256) public customerAge;
+    mapping(address => uint256) public distanceTraveled;
+
+    constructor() {
+        owner = msg.sender;
+    }
+
+    function RentBike(uint256 _numberOfBikes) external {
+        // Ensure only one bike can be rented by the owner
+        require(msg.sender == owner, "Only the owner can perform this action");
+        assert(_numberOfBikes == 1);
+        
+        // Increment the number of rented bikes
+        rentedBikes += _numberOfBikes;
+    }
+
+    function setCustomerAge(uint256 _age) external {
+        // Ensure the age of the customer is greater than or equal to 18
+        require(_age >= 18, "Bikes are rented only for adults");
+
+        // Set the age of the customer
+        customerAge[msg.sender] = _age;
+    }
+
+    function DistanceTravelled(uint256 _speedometerReading) external {
+        // Use revert statement if the reading of speedometer is greater than 1000
+        if (_speedometerReading > 1000) {
+            revert("Bike condition is bad");
+        }
+
+        // Update distance traveled
+        distanceTraveled[msg.sender] += _speedometerReading;
+    }
+}
