@@ -36,3 +36,9 @@ This Solidity smart contract, named "BikeRental", facilitates the rental of bike
 **License:**
 
 This smart contract is licensed under the MIT License. See the SPDX-License-Identifier tag in the contract file for details.
+**Author** 
+
+Venkatesh 
+
+svenkatesh2111@gmail.com
+
